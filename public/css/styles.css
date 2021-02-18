@@ -1,0 +1,20 @@
+body {
+    background-color: rgb(236, 188, 56);
+}
+
+.burgerImage {
+    display: flex;
+    justify-content: center;
+}
+
+.pageTitle {
+    display: flex;
+    justify-content: center;
+    color: rgb(221, 89, 1);
+    font-size: 30px;
+}
+
+.burgerForm {
+    display: flex;
+    justify-content: center;
+}
