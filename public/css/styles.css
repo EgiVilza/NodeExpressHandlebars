@@ -18,3 +18,23 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.devourButton {
+    position: relative;
+}
+
+li {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.burgerName {
+    width: 300px;
+    height: 150px;
+}
+
+.burgerText {
+    background-color: rgb(226, 226, 226);
+    width: 300px;
+    margin-right: 40px;
+}

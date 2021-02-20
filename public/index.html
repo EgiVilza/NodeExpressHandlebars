@@ -18,26 +18,61 @@
         <p class="pageTitle">Eat-Da-Burger!</p>
 
         <div class="container">
-            <div>
+            <div class="row">
+                <!--Break-->
+                <div class="col col-lg-1"></div>
 
-            </div>
-            <div>
+                <!--Burger List-->
+                <ul class="col col-lg-5 burgerList">
+                    <li>
+                        <input type="text" class="burgerText" id="1" value="Burger1" readonly><br>
+                        <button class="devourButton">Devour It!</button>
+                    </li>
+                    <li>
+                        <input type="text" class="burgerText" id="2" value="Burger2"readonly><br>
+                        <button class="devourButton">Devour It!</button>
+                    </li>
+                    <li>
+                        <input type="text" class="burgerText" id="3" value="Burger3" readonly><br>
+                        <button class="devourButton">Devour It!</button>
+                    </li>
+                </ul>
 
+                <!--Break-->
+                <div class="col col-lg-1"></div>
+
+                <!--Devoured Burger List-->
+                <ul class="col col-lg-4 devouredList">
+                    
+                    <li>
+                        <input type="text" class="burgerText" value="Test" readonly><br>
+                    </li>
+                    <li>
+                        <input type="text" class="burgerText" value="Test" readonly><br>
+                    </li>
+                    <li>
+                        <input type="text" class="burgerText" value="Test" readonly><br>
+                    </li>
+                </ul>   
+                
+                <!--Break-->
+                <div class="col col-lg-2"></div>
             </div>
         </div>
+            
 
         <div>
             <div class="burgerForm">
-                <input type="text" id="burgerName" name="burgerName"><br>
+                <input type="text" class="burgerName" name="burgerName"><br>
             </div><br>
 
             <div class="burgerForm">
-                <button type="button" class="btn btn-danger" >Submit</button>
+                <button type="button" id="submit" class="btn btn-danger" >Submit</button>
             </div>
         </div>
         
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="js/index.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="./js/view.js" type="text/javascript"></script>
+        
     </body>  
 </html>
