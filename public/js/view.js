@@ -1,57 +1,166 @@
-// let burger array
-let burger = []
+//const { response } = require("express");
 
-// Helper function to hide items
-const hide = (el) => {
-    el.style.display = 'none';
-};
-const show = (el) => {
-    el.style.display = 'inline';
-};
+document.addEventListener('DOMContentLoaded', (e) => {
+    const burgerList = $(".burgerList") 
+    const devouredList = $(".devouredList")
+    const devourButton = $(".devourButton")
+    // const formContainer = $("#Form")
 
- // Helper function to grab todos
- const getTodos = () => {
-    fetch('/api/todos', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success in getting todos:', data);
-        todos = data;
-        console.log(data)
-      });
-};
+    // let burger array
+    let burgers = []
 
+    // devoured array
+    let devoured = []
 
+    const initializeRows = () => {
+        burgerList.innerHTML = '';
+        const rowsToAdd = [];
+        burgerList.empty()
+        for (let i = 0; i < burgers.length; i++) {
+        rowsToAdd.push(createNewRow(burgers[i]));
+        }
+        rowsToAdd.forEach((row) => burgerList.append(row));
+    }
 
-// $("#submit").click(function() {
-//     let devourList = $(".devourList")
-//     let li = $("<li>")
-//     let input = $("<input>")
-//     let button = $("<button>")
-//     const burgerInput = $(".burgerName").val()
+    // Helper function to grab todos
+    const getBurgers = () => {
+        fetch('/api/burgers', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success in getting burger data:', data);
+            burgers = data;
+            initializeRows()
+        });
+    };
 
-//     input.attr({
+    const createNewRow = (burgers) => {
+        const newInputRow = $("<li>")
+        const newInput = $("<input>")
+        const newDevourButton = $("<button>")
+        const lineBreak = $("<br>")
+        const fullBurgerName = burgers.burger_id + ": " + burgers.name
+    
+        newInputRow.attr("id", burgers.burger_id)
+
+        newInput.attr({
+            type: "text",
+            class: "burgerText",
+            value: fullBurgerName
+        })
+
+        newInput.attr("readonly", true)
+    
+        newDevourButton.attr({
+            class: burgers.burger_id, 
+            id: "devourButton" 
+        })
+        newDevourButton.text("Devour It!")
+        newDevourButton.on("click", function() {
+            devourBurger(burgers.burger_id)
+        })
+    
+        newInputRow.append(newInput)
+        newInputRow.append(lineBreak)
+        newInputRow.append(newDevourButton)
+    
+        return newInputRow
+    }
+
+    const insertBurger = (e) => {
+        e.preventDefault()
+        const newBurger = $("#newBurger").val()
+        const burger = {
+            name: newBurger,
+            devourStatus: false
+        }
+        //console.log(burger)
+        if (burger.name) {
+            fetch('/api/burgers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(burger)
+            })
+            .then((response) => response.json())
+            .then(() => getBurgers())
+        }
+        getBurgers()
+    }
+
+    document.getElementById("Form").addEventListener('submit', insertBurger)
+
+    const devourBurger = (burgerID) => {
+
+        const burgerRecord = $("#" + burgerID).children().val()
+        //Delete burger from burger list
+        $("#" + burgerID).empty()
+
+        const burgerUpdate = {
+            burger_id: burgerID,
+            devourStatus: true
+        }
+
+        if (burgerUpdate.burger_id) {
+            fetch('/api/burgers', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(burgerUpdate)
+            })
+            .then((response) => response.json())
+        }
+
+        const newInputRow = $("<li>")
+        const newInput = $("<input>")
+
+        newInput.attr({
+            type: "text",
+            class: "burgerText",
+            value: burgerRecord
+        })
+
+        newInput.attr("readonly", true)
+    
+        newInputRow.append(newInput)
+    
+        devouredList.append(newInputRow)
+
+    }
+
+})
+
+/*
+    Done: figure out add event listner code, get the class of button
+    Done: Use class name to delete the list of rows
+    Done: Then use query to change devour status
+    Then use a function to show the list that is devoured
+*/
+
+// const createNewRow = (burgers) => {
+//     const newInputRow = $("<li>")
+//     const newInput = $("<input>")
+//     const newDevourButton = $("<button>")
+
+//     newInput.attr({
 //         type: "text",
 //         class: "burgerText",
-//         value: burgerInput,
-//         readonly: true
+//         id: burgers.burger_id,
+//         value: burgers.name
 //     })
 
-//     button.text("Devour It!")
-//     button.attr({
-//         class: "devourButton",
-//         data: "false"
-//     })
+//     newDevourButton.attr("class", "devourButton")
+//     newDevourButton.text("Devour It!")
 
-//     li.append(input)
-//     li.append(button)
+//     newInputRow.append(newInput)
+//     newInput.append(newDevourButton)
 
-//     devourList.append(li)
+//     return newInputRow
+// }
 
-//     // var test = $(".burgerName").val()
-//     // console.log(test)
-// })
