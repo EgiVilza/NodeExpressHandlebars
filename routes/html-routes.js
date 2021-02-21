@@ -4,14 +4,14 @@ const db = require("../models")
 // Routes
 module.exports = (app) => {
     app.get('/api/burgers', (req,res) => {
-        db.burgers.findAll({}).then((results) => res.json(results))
+        db.burgers.findAll({where: {devourStatus: false}}).then((results) => res.json(results))
     })
 
     app.post('/api/burgers', (req, res) => {
         db.burgers.create({
             name: req.body.name,
             devourStatus: req.body.devourStatus
-        })//.then((results) = res.json(results))
+        }).then((results) = res.json(results))
     })
 
     app.put('/api/burgers', (req, res) => {
@@ -24,6 +24,6 @@ module.exports = (app) => {
                     burger_id: req.body.burger_id
                 }
             }
-        )
+        ).then((results) = res.json(results))
     })
 }
