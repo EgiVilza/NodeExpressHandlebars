@@ -1,6 +1,7 @@
 const { sequelize } = require(".");
 
 module.exports = (sequelize, DataTypes) => {
+    //Burger Table burger_id, name, devourStatus
     const burgers = sequelize.define('burgers', {
         burger_id: {
             type: DataTypes.INTEGER,
@@ -18,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
             default: false
         }
     })
-    //burgers.sync()
     return burgers
 }
 

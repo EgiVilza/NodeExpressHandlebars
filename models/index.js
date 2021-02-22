@@ -8,6 +8,7 @@ const config = require(`${__dirname}/../config/config.json`)[env];
 const db = {};
 let sequelize;
 
+//Connect to mysql application
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
@@ -19,6 +20,7 @@ if (config.use_env_variable) {
   );
 }
 
+//Sequalize Model
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
