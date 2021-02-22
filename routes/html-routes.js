@@ -5,7 +5,7 @@ const db = require("../models")
 module.exports = (app) => {
 
     app.get("/", function(req, res) {
-        res.json(path.join(__dirname, "./public/index.html"));
+        res.json(path.join(__dirname, './public/index.html'));
     });
       
     //Finds all non-devoured burgers

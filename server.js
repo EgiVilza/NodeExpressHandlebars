@@ -19,7 +19,8 @@ app.use(express.static('public'));
 // Invoke routes
 indexRouter(app);
 
+app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 // Syncing our sequelize models and then starting our Express app
-db.sequelize.sync({ force: true }).then(() => {
-  app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
-});
+// db.sequelize.sync({ force: true }).then(() => {
+//   app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
+// });
