@@ -17,8 +17,8 @@ module.exports = (app) => {
     app.post('/api/burgers', (req, res) => {
         db.burgers.create({
             name: req.body.name,
-            devourStatus: req.body.devourStatus
-        }).then((results) = res.json(results))
+            devourStatus: req.body.devourStatus,
+        }).then((results) => res.json(results))
     })
 
     //Update burger record
@@ -32,6 +32,6 @@ module.exports = (app) => {
                     burger_id: req.body.burger_id
                 }
             }
-        ).then((results) = res.json(results))
+        ).then((results) => res.json(results))
     })
 }

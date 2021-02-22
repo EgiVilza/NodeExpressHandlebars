@@ -130,7 +130,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
         newInput.attr("readonly", true)
     
         newInputRow.append(newInput)
-    
         devouredList.append(newInputRow)
 
         //Adds the updates to the api/burgers route
@@ -142,7 +141,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 },
                 body: JSON.stringify(burgerUpdate)
             })
-            .then((response) => response.json())
+            .then((results) => results.json())
         }
     }
 
