@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 },
                 body: JSON.stringify(burger)
             })
-            .then((response) => response.json())
+            .then((results) => results.json())
             .then(getBurgers())
         }
     }
@@ -143,7 +143,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 body: JSON.stringify(burgerUpdate)
             })
             .then((response) => response.json())
-            .then((response) => console.log(response))
         }
     }
 

@@ -57,3 +57,7 @@ li {
 .devouredList {
     margin-left: 10px;
 }
+
+.footerMessage {
+    text-align: center;
+}
