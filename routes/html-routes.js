@@ -4,6 +4,7 @@ const db = require("../models")
 // Routes
 module.exports = (app) => {
 
+    //index.html to "/" route
     app.get("/", function(req, res) {
         res.json(path.join(__dirname, './public/index.html'));
     });

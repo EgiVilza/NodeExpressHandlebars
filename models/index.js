@@ -9,8 +9,8 @@ const db = {};
 let sequelize;
 
 //Connect to mysql application
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable]);
+if (env != "development") {
+  sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
   sequelize = new Sequelize(
     config.database,
