@@ -11,7 +11,9 @@ module.exports = (app) => {
       
     //Finds all non-devoured burgers
     app.get('/api/burgers', (req,res) => {
-        db.burgers.findAll({where: {devourStatus: false}}).then((results) => res.json(results))
+        db.burgers.findAll(
+            {where: {devourStatus: false}}
+        ).then((results) => res.json(results))
     })
 
     //Post burger record
