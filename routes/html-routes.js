@@ -9,11 +9,11 @@ module.exports = (app) => {
         res.json(path.join(__dirname, './public/index.html'));
     });
       
+    //{where: {devourStatus: false}}
     //Finds all non-devoured burgers
     app.get('/api/burgers', (req,res) => {
-        db.burgers.findAll(
-            {where: {devourStatus: false}}
-        ).then((results) => res.json(results))
+        db.burgers.findAll()
+        .then((results) => res.json(results))
     })
 
     //Post burger record
